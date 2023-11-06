@@ -1,29 +1,17 @@
-import { useForm } from "react-hook-form";
-
-enum FacingEnum {
-  north = "North",
-  south = "South",
-  east = "East",
-  west = "West",
-}
-
-export type FormData = {
-  row: number;
-  column: number;
-  facing?: FacingEnum;
-};
+import { SubmitHandler, useForm } from "react-hook-form";
+import { PlacementFormData } from "../../types";
 
 interface FormProps {
-  onSubmit: (data: FormData) => void;
+  onSubmit: SubmitHandler<PlacementFormData>;
   facingEnabled?: boolean;
 }
 
-const PlacementForm: React.FC<FormProps> = ({ onSubmit, facingEnabled }) => {
+const PlacementForm = ({ onSubmit, facingEnabled }: FormProps) => {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<PlacementFormData>();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">

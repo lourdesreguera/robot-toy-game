@@ -1,10 +1,7 @@
+import { CellProps } from "../../types";
 import "./Board.css";
 
-interface CellProps {
-  keyCell: string;
-}
-
-const Cell: React.FC<CellProps> = ({ keyCell }) => {
+const Cell = ({ keyCell }: CellProps) => {
   return <div className="cell" id={keyCell}></div>;
 };
 
