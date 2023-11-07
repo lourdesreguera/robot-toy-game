@@ -56,14 +56,18 @@ export const cellSlice = createSlice({
       }
     },
 
+    setOccupiedCellDialog: state => {
+      state.occupiedCellDialogOpen = !state.occupiedCellDialogOpen
+    },
+
     moveRobot: (state, action: PayloadAction<AddRobotPayload>) => {
-      console.log(state.robotToMove?.facingDir)
       const { coords, facingDir } = action.payload
       const isOccupied: Cell | undefined = state.occupiedCells.find(
         cell => cell.coords === coords
       )
-
-      if (!isOccupied) {
+      const isRobotToMove: boolean = state.robotToMove?.coords === coords
+      console.log(state.robotToMove?.coords, isRobotToMove)
+      if (!isOccupied && !isRobotToMove) {
         state.selectedCell.coords = coords
         state.selectedCell.isFree = false
         state.selectedCell.itemInCell = 'robot'
@@ -77,6 +81,9 @@ export const cellSlice = createSlice({
         }
         state.occupiedCells = [...state.occupiedCells, newRobot]
         state.robotToMove = null
+        state.occupiedCellDialogOpen = false
+      } else if (isRobotToMove) {
+        console.log('The robot is already here. Choose another location')
       } else {
         state.occupiedCellDialogOpen = true
         state.robotToMove = action.payload
@@ -84,10 +91,6 @@ export const cellSlice = createSlice({
           cell => cell.coords !== state.robotToMove?.coords
         )
       }
-    },
-
-    setOccupiedCellDialog: state => {
-      state.occupiedCellDialogOpen = !state.occupiedCellDialogOpen
     }
   }
 })

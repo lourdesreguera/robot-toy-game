@@ -35,7 +35,6 @@ const PlacementRobot = () => {
     const coords = `${data.row},${data.column}`;
     const facingDir = data.facing;
     dispatch(moveRobot({ coords, facingDir }));
-    dispatch(setOccupiedCellDialog());
 
   };
 

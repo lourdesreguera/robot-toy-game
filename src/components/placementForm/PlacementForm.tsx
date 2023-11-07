@@ -16,21 +16,21 @@ const PlacementForm = ({ onSubmit, facingEnabled }: FormProps) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
       <input
-        {...register("row", { required: "Row placement is required" })}
+        {...register("row", { required: true, min: 1, max: 5 })}
         aria-invalid={errors.row ? "true" : "false"}
         placeholder="Row"
         className="input"
         type="number"
       />
-      {errors.row && <p>{errors.row.message}</p>}
+      {errors.row && <p>The number must be between 1 and 5</p>}
       <input
-        {...register("column", { required: "Column placement is required" })}
+        {...register("column", { required: true, min: 1, max: 5 })}
         aria-invalid={errors.column ? "true" : "false"}
         placeholder="Column"
         className="input"
         type="number"
       />
-      {errors.column && <p>{errors.column.message}</p>}
+      {errors.column && <p>The number must be between 1 and 5</p>}
       {facingEnabled && (
         <>
           <select
