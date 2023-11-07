@@ -5,5 +5,6 @@ export interface CellProps {
 export interface PlacementFormData {
   row: number
   column: number
-  facing?: 'North' | 'South' | 'East' | 'West'
+  facing?: 'NORTH' | 'SOUTH' | 'EAST' | 'WEST' 
 }
+

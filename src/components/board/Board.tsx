@@ -1,8 +1,37 @@
-import { CellProps } from "../../types";
+import { useAppSelector } from "../../redux/hooks";
+
+// styles
 import "./Board.css";
 
+// types
+import { CellProps } from "../../types";
+
 const Cell = ({ keyCell }: CellProps) => {
-  return <div className="cell" id={keyCell}></div>;
+  const occupiedCells = useAppSelector((state) => state.cell.occupiedCells);
+
+  const isOccupied = occupiedCells.find((cell) => {
+    return cell.id === keyCell;
+  });
+
+  return (
+    <div className="cell" id={keyCell}>
+      {isOccupied && (
+        <img
+          src="./robot.svg"
+          alt="robot"
+          className={`robot ${
+            isOccupied.facing === "EAST"
+              ? "east"
+              : isOccupied.facing === "WEST"
+              ? "west"
+              : isOccupied.facing === "NORTH"
+              ? "north"
+              : ""
+          }`}
+        />
+      )}
+    </div>
+  );
 };
 
 const Board = () => {
