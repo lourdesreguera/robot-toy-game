@@ -10,7 +10,7 @@ const Cell = ({ keyCell }: CellProps) => {
   const occupiedCells = useAppSelector((state) => state.cell.occupiedCells);
 
   const isOccupied = occupiedCells.find((cell) => {
-    return cell.id === keyCell;
+    return cell.coords === keyCell;
   });
 
   return (

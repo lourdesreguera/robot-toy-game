@@ -8,3 +8,6 @@ export interface PlacementFormData {
   facing?: 'NORTH' | 'SOUTH' | 'EAST' | 'WEST' 
 }
 
+// export interface DialogProps {
+//   isOpen: ()
+// }
